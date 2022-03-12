@@ -1,10 +1,12 @@
 // Map 2D children to a cylindrical shaped
-module CurveLib_MapToCylinder(r=1, d=undef, height=1, thickness=1, halign="left", valign="bottom", hstretch="none", vstretch="none")
+module CurveLib_WrapToCylinder(r=1, d=undef, height=1, thickness=1, halign="left", valign="bottom", hstretch="none", vstretch="none")
 {
     // Determine the requested diameter
     diameter = is_undef(d) ? r*2 : d;
 
     // Calculate the number of segments in the cylinder
+    // This is based on $fn, if it has been set to a value greater than 0
+    // or $fa or $fs, whichever has the larger value for the selected diameter
     fa_segment_width = diameter * sin($fa/2);
     fa_segment_count = 360/$fa;
     fs_segment_angle = asin(diameter/$fs);
@@ -50,8 +52,8 @@ module CurveLib_MapToCylinder(r=1, d=undef, height=1, thickness=1, halign="left"
         valign == "top" ? -height :
         0;
 
-    // Determine how the extruded segment will be scaled along the x-axis so that it tapers toward a point at the center of teh cylinder
-    extrude_scale = ((diameter/2) - thickness) / (diameter/2);
+    // Determine how the extruded segment will be scaled along the x-axis so that it tapers toward a point at the center of the cylinder
+    extrude_scale = ((diameter/2) + thickness) / (diameter/2);
 
     // Rotate the cylinder to be horizontal
     rotate([90, 0, 0])
@@ -74,9 +76,9 @@ module CurveLib_MapToCylinder(r=1, d=undef, height=1, thickness=1, halign="left"
         // Move the left edge of the extruded segment to lie against the Y-Axis
         translate([segment_width/2, 0, 0])
         // Flip the extruded segment along the Z-axis
-        mirror([0, 0, 1])
+        mirror([0, 0, thickness < 0 ? 1 : 0])
         // Extrude the segment, tapering toward a point like a piece of pie
-        linear_extrude(thickness, scale=[extrude_scale, 1])
+        linear_extrude(abs(thickness), scale=[extrude_scale, 1])
         // Grab the current segment of child geometry
         intersection()
         {

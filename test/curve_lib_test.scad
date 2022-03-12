@@ -31,9 +31,7 @@ include<../curve_lib.scad>
 
 module Generate()
 {
-    #cylinder(d=Curve_Diameter, Text_Height);
-    CurveLib_MapToCylinder(d=Curve_Diameter, height=Text_Height, thickness=Thickness, halign=Horizontal_Alignment, valign=Vertical_Alignment, hstretch=Horizontal_Stretch, vstretch=Vertical_Stretch)
-    resize([0, Text_Height], true)
+    CurveLib_WrapToCylinder(d=Curve_Diameter, height=Text_Height, thickness=Thickness, halign=Horizontal_Alignment, valign=Vertical_Alignment, hstretch=Horizontal_Stretch, vstretch=Vertical_Stretch)
         text(Text, font=Font, size=Text_Height, halign=Horizontal_Alignment, valign=Vertical_Alignment);
 }
 
