@@ -44,7 +44,7 @@ The `CurveLib_WrapToCylinder` function will wrap 2D geometry to a cylindrical sh
    
    "center" indicates the geometry is centered vertically around the X-axis.
    
-* hstretch
+* `hstretch`
 
    Specifies whether the geometry should be stretched horizontally to match the perimeter of the cylinder being wrapped around (defaults to "none").
    
@@ -60,7 +60,7 @@ The `CurveLib_WrapToCylinder` function will wrap 2D geometry to a cylindrical sh
    
    Alternatively, a numerical value can be passed in to this parameter.  A value of 1 is the same as "full", 0.5 is the same as "half", 0 is the same as "none", etc.  This allows fine-tuning of the stretch amount.
    
-* vstretch
+* `vstretch`
 
    Specifies whether the geometry should be stretched vertically to match the height of the cylinder being wrapped around (defaults to "none").
    
