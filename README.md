@@ -47,7 +47,7 @@ The `CurveLib_WrapToCylinder` function will wrap 2D geometry to a cylindrical sh
 * `hstretch`
 
    Specifies whether the geometry should be stretched horizontally to match the perimeter of the cylinder being wrapped around (defaults to "none").
-   
+
    "none" indicates that the geometry should be wrapped as-is and not stretched in any way.
    
    "quarter" indicates that the geometry should be stretched to a quarter of the cylinder's perimiter.
@@ -63,6 +63,8 @@ The `CurveLib_WrapToCylinder` function will wrap 2D geometry to a cylindrical sh
 * `vstretch`
 
    Specifies whether the geometry should be stretched vertically to match the height of the cylinder being wrapped around (defaults to "none").
+   
+   This may be needed, for instance, to correct for the complexity with how fonts work.  Even though a size is specified when creating text in OpenSCAD, in my experience, the text height may larger (or smaller) than this size.  Stretching the text vertically ensures that it matches the height of the cylinder.
    
    "none" indicates that the geometry should be wrapped as-is and not stretched in any way.
    
