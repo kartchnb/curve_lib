@@ -7,6 +7,8 @@ Note that rendering using this library is very computationally complex, it can t
 
 Currently, only curving into cylindrical shapes is implemented.  Spheres and spirals may come.  Eventually.  Maybe.
 
+There are definitely still some issues to work out with this library, but it is useable, if you're careful.
+
 ## Usage
 The `CurveLib_WrapToCylinder` function will wrap 2D geometry to a cylindrical shape.  The following parameters are supported:
 
